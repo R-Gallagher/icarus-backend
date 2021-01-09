@@ -1,0 +1,41 @@
+{
+  "addons": [
+    "heroku-postgresql",
+    "heroku-redis",
+    "securekey"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "env": {
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "DEV_ENV": {
+      "required": true
+    },
+    "REDIS_URL": {
+      "required": true
+    },
+    "SECURE_KEY": {
+      "required": true
+    },
+    "SENDGRID_API_KEY": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "drlink-REST-API",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}

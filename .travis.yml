@@ -1,0 +1,25 @@
+dist: xenial
+language: python
+python:
+  - "3.7"
+cache: pip
+install:
+  - pip install -r requirements.txt
+addons:
+  postgresql: 9.6
+  apt:
+    packages:
+      - postgresql-9.6-postgis-2.4
+services:
+  - postgresql
+  - redis-server
+env:
+  global:
+    - DATABASE_URL='postgresql://postgres:@127.0.0.1:5432/testing_db'
+    - REDIS_URL='redis://127.0.0.1:6379'
+before_script:
+  - psql -U postgres -c "create database testing_db;"
+  - psql testing_db -U postgres -c "create extension postgis;"
+script:
+  - python -m unittest
+
